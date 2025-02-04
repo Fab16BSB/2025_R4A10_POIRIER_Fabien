@@ -35,8 +35,11 @@ Sa seule propriété est une fonction findMany, qui ne prend pas d'argument et r
 attention on renvoie un tableau de T
 */
 
-// Implémentez ici
+interface FindMany<T> {
 
+    findMany(): Promise<T[]>;
+
+}
 /*
 2. Faire le reste du CRUD 
 
@@ -69,6 +72,21 @@ Dans la première question, vous avez fait FindMany. Sur le même modèle, faite
 
 // Implémentez ici
 
+interface FindOne<T> {
+    findOne(id: number): Promise<T>;
+}
+
+interface Create<T> {
+    create(element: T): Promise<T>;
+}
+
+interface Update<T> {
+    update(id: number, element: T): Promise<T>;
+}
+
+interface Delete {
+    delete(id: number): Promise<number>;
+}
 /*
 3. Créer les types Student et Course
 
@@ -86,6 +104,19 @@ Un cours est matérialisé par:
 */
 
 // Implémentez ici
+type Student = {
+    id: number;
+    firstname: string;
+    lastname: string;
+    group: string;
+}
+
+type Course = {
+    id: number;
+    name: string;
+    enseignant: string;
+    active: boolean;
+}
 
 /*
 4. Créer les interfaces StudentRepository et CourseRepository
@@ -97,6 +128,13 @@ Ces deux interfaces vont étendre les interfaces CRUD que vous avez créées et 
 */
 
 // Implémentez ici
+interface StudentRepository extends FindMany<Student>, FindOne<Student>, Create<Student>, Delete  {
+
+}
+
+interface CourseRepository extends FindMany<Course>, FindOne<Course>, Create<Course>, Update<Course>{
+
+}
 
 /*
 5. Implémentation des classes
@@ -112,6 +150,54 @@ Pour les findMany, retournez simplement un tableau vide, pour les autres, vous p
 */
 
 // Implémentez ici
+class SQLStudentRepository implements StudentRepository {
+
+    async findMany(){
+        return [];
+    }
+
+    async findOne(id: number) {
+        return null;
+    }
+
+
+    async create(student: Student){
+        return null;
+    }
+
+    async update(id: number, student: Student) {
+        return null;
+    }
+
+
+    async delete(id: number){
+        return null;
+    }
+}
+
+class SQLCourseRepository implements CourseRepository  {
+    async findMany(){
+        return [];
+    }
+
+    async findOne(id: number) {
+        return null;
+    }
+
+
+    async create(course: Course){
+        return null;
+    }
+
+    async update(id: number, course: Course) {
+        return null;
+    }
+
+
+    async delete(id: number){
+        return null;
+    }
+}
 
 /**
  * Ca y est, vous êtes des génies (en devenir) du design logiciel en POO (le web aujourd'hui c'est beaucoup de software design, va falloir se préparer)
