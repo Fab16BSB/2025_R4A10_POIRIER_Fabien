@@ -85,7 +85,7 @@ interface Update<T> {
 }
 
 interface Delete {
-    delete(id: number): Promise<number>;
+    delete(id: number): Promise<void>;
 }
 /*
 3. Créer les types Student et Course
